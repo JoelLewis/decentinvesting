@@ -1,0 +1,14 @@
+/* Warm sage/forest green — approachable, not "finance bro" */
+:root {
+  --vp-c-brand-1: #4a7c59;
+  --vp-c-brand-2: #3d6b4c;
+  --vp-c-brand-3: #2f5a3f;
+  --vp-c-brand-soft: rgba(74, 124, 89, 0.14);
+}
+
+.dark {
+  --vp-c-brand-1: #6aad7a;
+  --vp-c-brand-2: #5a9c6a;
+  --vp-c-brand-3: #4a8b5a;
+  --vp-c-brand-soft: rgba(106, 173, 122, 0.14);
+}

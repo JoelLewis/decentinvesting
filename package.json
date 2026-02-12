@@ -1,0 +1,16 @@
+{
+  "name": "decent-investing-site",
+  "version": "1.0.0",
+  "description": "Simple static site for Decent Investing guide",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.0.0",
+    "vue": "^3.4.0"
+  }
+}
