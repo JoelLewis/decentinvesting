@@ -1,62 +1,62 @@
-Deployment Guide
+# Decent Investing - AI Context
 
-Follow these steps to structure your project and deploy to Cloudflare Pages.
+## 1. Project Overview
 
-1. Folder Structure
+An educational single-page guide providing simple, practical steps to help most people build a strong financial foundation through investing. The site deliberately avoids complex strategies in favor of accessible, actionable advice.
 
-Create a new folder on your computer and set it up exactly like this:
+- **Target Audience**: General public wanting to start investing safely
+- **Tone**: Approachable, accessible, non-condescending. "Decent" as in "good enough for most people."
+- **Legal**: Includes prominent disclaimers — this is not professional financial advice. Recommends consulting a lawyer, accountant, or registered financial advisor for specific situations.
 
-my-investing-site/
-├── package.json              <-- (The file I generated above)
-└── docs/
-    ├── .vitepress/
-    │   └── config.mts        <-- (The file I generated above)
-    └── index.md              <-- (RENAME "Decent Investing.md" to this and place here)
+## 2. Content Structure
 
+Single-page guide (`docs/index.md`) with header-based navigation:
 
-Note: VitePress uses index.md as the homepage. You must rename your file.
+1. Building a cash cushion (emergency funds, savings)
+2. Prioritizing investment accounts (401k, HSA, IRA, taxable brokerage — in order of tax efficiency)
+3. Simple investment choices (diversified index funds, target date funds)
 
-2. Local Testing (Optional but Recommended)
+Content links to external resources (Wikipedia, Vanguard, etc.) for deeper learning.
 
-If you have Node.js installed:
+## 3. Technical Stack
 
-Open your terminal in the my-investing-site folder.
+- **Framework**: VitePress (Vue 3-based static site generator)
+- **Theme**: Default VitePress + minimal custom CSS
+- **Deploy Target**: Cloudflare Pages
+- **Note**: VitePress uses Vue under the hood. This is an intentional choice for a documentation site — it does not contradict the global "no Vue" preference for application development.
 
-Run npm install to get the dependencies.
+## 4. Project Structure
 
-Run npm run docs:dev.
+```
+docs/
+├── index.md                    # Main content (single-page guide)
+└── .vitepress/
+    ├── config.mts              # Site config (title, sidebar, footer)
+    ├── theme/
+    │   ├── index.ts            # Theme entry point
+    │   └── custom.css          # Brand colors (warm sage/forest green palette)
+    ├── cache/                  # Build artifacts (gitignored)
+    └── dist/                   # Production build output (gitignored)
+```
 
-Open the localhost link provided to see your site.
+## 5. Conventions
 
-3. Push to GitHub/GitLab
+- **Sidebar**: Statically defined in `config.mts`, linking to H2 anchor sections on the homepage
+- **Colors**: Warm sage/forest green palette — intentionally "approachable, not finance bro"
+- **Content edits**: All content changes go in `docs/index.md`
+- **Theme changes**: CSS overrides in `docs/.vitepress/theme/custom.css`
+- **Site config**: `docs/.vitepress/config.mts` for title, description, sidebar links, footer
+- Clean URLs enabled (no `.html` extensions)
+- Local search provider (no external dependencies)
 
-Initialize git: git init
+## 6. Development Commands
 
-Create a .gitignore file with the following content:
+```bash
+npm run docs:dev       # Local development server
+npm run docs:build     # Production build → docs/.vitepress/dist
+npm run docs:preview   # Preview built site locally
+```
 
-node_modules
-docs/.vitepress/dist
-docs/.vitepress/cache
+## 7. Deployment
 
-
-Commit your files and push them to a new repository on GitHub or GitLab.
-
-4. Deploy to Cloudflare Pages
-
-Log in to the Cloudflare Dashboard.
-
-Go to Workers & Pages -> Create Application -> Connect to Git.
-
-Select the repository you just created.
-
-Build Settings:
-
-Framework Preset: Select VitePress.
-
-Build command: npm run docs:build (Cloudflare should auto-detect this).
-
-Build output directory: docs/.vitepress/dist (Cloudflare should auto-detect this).
-
-Click Save and Deploy.
-
-Cloudflare will build the site and give you a *.pages.dev URL.
+Cloudflare Pages with git-based CI/CD. `wrangler.jsonc` points assets to `docs/.vitepress/dist`.
