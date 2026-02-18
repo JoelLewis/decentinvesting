@@ -1,0 +1,133 @@
+---
+title: Investment Accounts
+description: Which investment accounts to use first, contribution limits, and the Roth vs Traditional decision.
+order: 3
+---
+
+import Callout from '@/components/content/Callout.astro';
+import Disclosure from '@/components/content/Disclosure.svelte';
+import RothVsTraditional from '@/components/interactive/RothVsTraditional.svelte';
+import Tooltip from '@/components/content/Tooltip.svelte';
+
+# Which Investment Accounts to Use First
+
+There are two main buckets of investment accounts: **standard** (taxable) and **tax-advantaged**. The tax-advantaged accounts are the single biggest edge available to everyday investors — they let your money compound without being chipped away by annual taxes.
+
+The order you fill them in matters more than which specific investments you pick inside them.
+
+## The Hierarchy of Saving
+
+*Generally, fill these accounts in this order:*
+
+1. **401k up to the employer match** — Free money. A 50-100% instant return.
+2. **HSA** — Triple tax advantage (if you're eligible).
+3. **Roth IRA** — Tax-free growth forever.
+4. **401k up to the max** — Lowers your taxable income.
+5. **Taxable brokerage** — For everything beyond tax-advantaged limits.
+
+<Callout type="tip" title="The biggest exception">
+If you have a near-term goal (house down payment, wedding, sabbatical) that you'll need *before* retirement, save for that in a taxable brokerage account or a high-yield savings account. Retirement accounts lock up your money — that's the trade-off for the tax benefits.
+</Callout>
+
+## Account Types and Limits
+
+Contribution limits change annually. The numbers below are for **2025** — always verify the current year's limits at [irs.gov](https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-contributions).
+
+### 401k / 403b / TSP
+
+Employer-sponsored retirement plans.
+
+| | Traditional 401k | Roth 401k |
+|---|---|---|
+| **2025 limit** | $23,500 (under 50) / $31,000 (50+) | Same |
+| **Tax on contributions** | Pre-tax (lowers taxable income now) | After-tax (no deduction now) |
+| **Tax on growth** | Tax-deferred | Tax-free |
+| **Tax on withdrawal** | Taxed as ordinary income | Tax-free (if qualified) |
+| **Employer match** | Always goes into Traditional bucket | Same — match is always pre-tax |
+
+**Key feature:** The employer match. If your employer matches 50% of contributions up to 6% of salary, that's a guaranteed 50% return on those dollars. **Always capture the full match before doing anything else.**
+
+### IRA (Individual Retirement Account)
+
+You open this yourself at a brokerage (Vanguard, Fidelity, Schwab, etc.).
+
+| | Traditional IRA | Roth IRA |
+|---|---|---|
+| **2025 limit** | $7,000 (under 50) / $8,000 (50+) | Same |
+| **Tax on contributions** | May be deductible | After-tax |
+| **Tax on withdrawal** | Taxed as ordinary income | Tax-free (if qualified) |
+| **Early withdrawal** | Penalty + taxes | *Contributions* can be withdrawn anytime, penalty-free |
+
+**2025 Roth IRA income limits:** Contributions phase out at $150,000-$165,000 (single) and $236,000-$246,000 (married filing jointly).
+
+<Disclosure client:load title="Backdoor Roth IRA — for high earners">
+If your income exceeds the Roth IRA limits, there's a legal workaround:
+
+1. Contribute to a **Traditional IRA** (non-deductible — anyone can do this regardless of income)
+2. **Convert** the Traditional IRA to a Roth IRA shortly after
+
+The key requirement is that you should have **no existing pre-tax Traditional IRA balance** — otherwise the conversion triggers the pro-rata rule.
+
+If you have old Traditional IRA balances, you may be able to roll them into your 401k first to clear the way.
+</Disclosure>
+
+### HSA (Health Savings Account)
+
+The "triple tax advantage" — the only account type in the U.S. tax code that's tax-advantaged on the way in, while it grows, *and* on the way out.
+
+1. **Contributions** reduce your taxable income
+2. **Growth** is tax-free
+3. **Withdrawals** for eligible medical expenses are tax-free
+
+**2025 limits:** $4,300 (individual) / $8,550 (family). Plus $1,000 catch-up if 55+.
+
+**Eligibility:** You must be enrolled in a <Tooltip client:load term="High Deductible Health Plan" definition="A health insurance plan with a higher deductible than traditional plans. You pay more out of pocket before insurance kicks in, but premiums are lower." href="/reference/glossary" />.
+
+**The long-game strategy:** Many people pay medical bills out of pocket now, save the receipts, and let their HSA grow invested for decades. You can reimburse yourself for those old medical expenses *at any time in the future*.
+
+### Taxable Brokerage Account
+
+The standard investment account. No contribution limits, no tax advantages, no restrictions on when you can access your money. Use this for money beyond your tax-advantaged limits and near-term savings goals.
+
+### Other Accounts
+
+**FSA (Flexible Spending Account):** "Use it or lose it" — funds generally don't roll over.
+
+**529 Plan:** State-sponsored education savings. Tax-free for qualified education expenses. Since 2024, unused 529 funds can be rolled into a Roth IRA (up to $35,000 lifetime, subject to conditions).
+
+## Roth vs Traditional: The Decision
+
+**Roth = pay taxes now, withdraw tax-free later.**
+**Traditional = skip taxes now, pay taxes on withdrawal.**
+
+The question is: **will your tax rate be higher now or in retirement?**
+
+| If you expect... | Then lean toward... | Why |
+|---|---|---|
+| Higher taxes in retirement | **Roth** | Pay the lower rate now |
+| Lower taxes in retirement | **Traditional** | Skip the higher rate now |
+| About the same | **Roth** | Tax-free growth is more flexible |
+| You're not sure | **Roth** | Tax diversification gives you options |
+
+### Try It: Compare the Numbers
+
+<RothVsTraditional client:load />
+
+<Disclosure client:load title="Asset location: which investments go in which accounts?">
+Once you have multiple account types, you can be strategic about *which investments you put where*:
+
+| Account type | Best investments to hold here | Why |
+|---|---|---|
+| **Roth IRA / Roth 401k** | Highest expected growth (stocks) | All growth is tax-free |
+| **Traditional IRA / 401k** | Bonds, REITs, high-dividend funds | Hide ordinary income from annual taxes |
+| **Taxable brokerage** | Low-turnover index funds, tax-efficient ETFs | Minimize taxable events |
+
+This optimization adds roughly 0.1-0.3% per year in after-tax returns. Worth doing once your portfolio spans multiple account types.
+</Disclosure>
+
+<Callout type="warning">
+- **Not contributing enough to get the full employer match** — the closest thing to free money in investing.
+- **Ignoring the Roth option because "I want the tax break now"** — if you're in your 20s-30s earning a moderate income, the Roth is almost certainly better.
+- **Contributing to a 529 before maximizing retirement accounts** — your kids can get student loans; you can't get a retirement loan.
+- **Forgetting about the HSA** — the triple tax advantage makes it arguably the best account type available.
+</Callout>

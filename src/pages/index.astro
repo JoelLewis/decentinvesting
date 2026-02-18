@@ -1,0 +1,95 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/layout/Hero.astro';
+import Callout from '@/components/content/Callout.astro';
+import { GUIDE_PAGES } from '@/lib/constants';
+---
+
+<BaseLayout title="Decent Investing">
+  <Hero />
+
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <h2 id="the-strategy" class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">The Strategy</h2>
+
+    <p class="mb-6 text-gray-600 dark:text-gray-400">
+      Most people don't need a complicated financial plan. They need a clear sequence of
+      simple steps — and the discipline to follow through.
+    </p>
+
+    <p class="mb-8 text-gray-600 dark:text-gray-400">
+      This guide covers the fundamentals that apply to the majority of people. If you have
+      significant debt, complex tax situations, or unique circumstances, you should supplement
+      this with professional advice from a
+      <a href="https://en.wikipedia.org/wiki/Fiduciary">fiduciary advisor</a>.
+    </p>
+
+    <ol class="space-y-4 mb-10">
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">0</span>
+        <div>
+          <a href="/guide/0-before-you-start" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Figure out what matters to you</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Start with purpose, not products.</p>
+        </div>
+      </li>
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">1</span>
+        <div>
+          <a href="/guide/1-cash-cushion" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Build your cash cushion</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">3 to 12 months of expenses, tiered for access and yield.</p>
+        </div>
+      </li>
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">2</span>
+        <div>
+          <a href="/guide/2-tackle-debt" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Tackle high-interest debt</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Pay off expensive debt before investing aggressively.</p>
+        </div>
+      </li>
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">3</span>
+        <div>
+          <a href="/guide/3-investment-accounts" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Use the right accounts</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Employer match &rarr; HSA &rarr; IRA &rarr; 401k &rarr; taxable.</p>
+        </div>
+      </li>
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">4</span>
+        <div>
+          <a href="/guide/4-investment-choices" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Pick simple investments</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Low-cost index funds. Understand fees. Add bonds.</p>
+        </div>
+      </li>
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">5</span>
+        <div>
+          <a href="/guide/5-staying-the-course" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Stay the course</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Markets drop. That's normal. Don't panic.</p>
+        </div>
+      </li>
+      <li class="flex gap-3">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-sage-100 dark:bg-sage-900/40 text-sage-700 dark:text-sage-300 font-bold flex items-center justify-center text-sm">6</span>
+        <div>
+          <a href="/guide/6-next-steps" class="font-semibold text-sage-700 dark:text-sage-400 no-underline hover:underline">Take your next steps</a>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-0.5">Automate, name beneficiaries, review annually.</p>
+        </div>
+      </li>
+    </ol>
+
+    <Callout type="tip" title="The 85% Solution">
+      <p>
+        Getting started at 85% right is vastly better than waiting to be 100% optimized.
+        Open an account this week. Set up an automatic transfer. You can fine-tune later —
+        the important thing is to start.
+      </p>
+    </Callout>
+
+    <div class="mt-10 text-center">
+      <a
+        href="/guide/0-before-you-start"
+        class="inline-flex items-center px-6 py-3 bg-sage-600 dark:bg-sage-500 text-white font-medium rounded-lg no-underline hover:bg-sage-700 dark:hover:bg-sage-400 transition-colors"
+      >
+        Start the Guide &rarr;
+      </a>
+    </div>
+  </section>
+</BaseLayout>
