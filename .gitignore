@@ -1,3 +1,8 @@
 node_modules
-docs/.vitepress/dist
-docs/.vitepress/cache
+dist
+.astro
+.claude/skills/
+.agent/
+.agents/
+desktop.ini
+manim/output/

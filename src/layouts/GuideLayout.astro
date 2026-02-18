@@ -1,0 +1,71 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '@/components/navigation/Sidebar.svelte';
+import ProgressBar from '@/components/navigation/ProgressBar.svelte';
+import TableOfContents from '@/components/navigation/TableOfContents.svelte';
+import Callout from '@/components/content/Callout.astro';
+import { GUIDE_PAGES } from '@/lib/constants';
+
+type Props = {
+  title: string;
+  description?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+};
+
+const { title, description, headings = [] } = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '');
+const currentSlug = currentPath.split('/').pop() ?? '';
+const currentIndex = GUIDE_PAGES.findIndex((p) => p.slug === currentSlug);
+const prevPage = currentIndex > 0 ? GUIDE_PAGES[currentIndex - 1] : null;
+const nextPage = currentIndex < GUIDE_PAGES.length - 1 ? GUIDE_PAGES[currentIndex + 1] : null;
+---
+
+<BaseLayout title={title} description={description}>
+  <ProgressBar client:load currentIndex={currentIndex} totalPages={GUIDE_PAGES.length} />
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-12 pb-8 flex gap-8">
+    <!-- Sidebar (hidden on mobile) -->
+    <aside class="hidden lg:block w-56 shrink-0">
+      <div class="sticky top-20">
+        <Sidebar client:load pages={[...GUIDE_PAGES]} currentSlug={currentSlug} />
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <article class="flex-1 max-w-3xl min-w-0">
+      <div class="prose prose-sage max-w-none">
+        <slot />
+      </div>
+
+      <!-- Prev / Next navigation -->
+      <nav class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700 flex justify-between">
+        {prevPage ? (
+          <a href={`/guide/${prevPage.slug}`} class="text-sm text-sage-600 dark:text-sage-400 no-underline hover:text-sage-700 dark:hover:text-sage-300">
+            &larr; {prevPage.title}
+          </a>
+        ) : <span />}
+        {nextPage ? (
+          <a href={`/guide/${nextPage.slug}`} class="text-sm text-sage-600 dark:text-sage-400 no-underline hover:text-sage-700 dark:hover:text-sage-300">
+            {nextPage.title} &rarr;
+          </a>
+        ) : <span />}
+      </nav>
+
+      <!-- Disclaimer footer -->
+      <p class="mt-8 pt-4 border-t border-gray-100 dark:border-gray-800 text-sm text-gray-400 dark:text-gray-500">
+        This guide is for informational purposes only and is not financial advice.
+        <a href="/reference/disclaimer">Read the full disclaimer.</a>
+      </p>
+    </article>
+
+    <!-- Table of Contents (hidden on mobile/tablet) -->
+    {headings.length > 0 && (
+      <aside class="hidden xl:block w-48 shrink-0">
+        <div class="sticky top-20">
+          <TableOfContents client:load headings={headings.filter((h) => h.depth <= 3)} />
+        </div>
+      </aside>
+    )}
+  </div>
+</BaseLayout>

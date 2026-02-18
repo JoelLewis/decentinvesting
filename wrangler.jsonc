@@ -2,6 +2,6 @@
   "name": "decentinvesting",
   "compatibility_date": "2025-01-01",
   "assets": {
-    "directory": "docs/.vitepress/dist"
+    "directory": "dist"
   }
 }
