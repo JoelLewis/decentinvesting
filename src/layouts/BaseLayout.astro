@@ -9,6 +9,7 @@ type Props = {
 
 const { title, description = 'Simple steps to help most people start and stay safe.' } = Astro.props;
 const fullTitle = title === 'Decent Investing' ? title : `${title} | Decent Investing`;
+const siteUrl = Astro.site?.origin ?? 'https://decentinvesting.com';
 ---
 
 <!doctype html>
@@ -19,6 +20,23 @@ const fullTitle = title === 'Decent Investing' ? title : `${title} | Decent Inve
     <meta name="theme-color" content="#4a7c59" />
     <meta name="description" content={description} />
     <title>{fullTitle}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}/og-image.png`} />
+    <meta property="og:url" content={Astro.url.href} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
     <!-- Dark mode init — runs before paint to prevent flash -->
     <script is:inline>
       (function() {
