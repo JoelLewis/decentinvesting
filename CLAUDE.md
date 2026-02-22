@@ -60,3 +60,9 @@ npm run docs:preview   # Preview built site locally
 ## 7. Deployment
 
 Cloudflare Pages with git-based CI/CD. `wrangler.jsonc` points assets to `docs/.vitepress/dist`.
+
+## Linear
+
+- **Project**: decentinvesting (team: Joellewis)
+- Reference issue IDs (e.g., JOE-42) in commit messages and PR titles
+- Issues discovered during implementation go to Triage with `agent-drafted` label
