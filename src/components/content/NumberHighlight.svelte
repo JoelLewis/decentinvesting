@@ -1,7 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  let { value, prefix = '', suffix = '', duration = 1500 }: {
+  let {
+    value,
+    prefix = '',
+    suffix = '',
+    duration = 1500,
+  }: {
     value: number;
     prefix?: string;
     suffix?: string;
@@ -50,9 +55,6 @@
   }
 </script>
 
-<span
-  bind:this={container}
-  class="font-bold text-sage-700 dark:text-sage-400 tabular-nums"
->
+<span bind:this={container} class="font-bold tabular-nums text-sage-700 dark:text-sage-400">
   {prefix}{displayValue.toLocaleString()}{suffix}
 </span>

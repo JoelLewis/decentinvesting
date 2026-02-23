@@ -68,7 +68,12 @@ export function emergencyFundTiers(
   const tiers = [
     { name: 'Checking', months: tier1Months, amount: monthlyExpenses * tier1Months, rate: 0.0001 },
     { name: 'HYSA', months: tier2Months, amount: monthlyExpenses * tier2Months, rate: 0.045 },
-    { name: 'T-Bills / CDs', months: tier3Months, amount: monthlyExpenses * tier3Months, rate: 0.05 },
+    {
+      name: 'T-Bills / CDs',
+      months: tier3Months,
+      amount: monthlyExpenses * tier3Months,
+      rate: 0.05,
+    },
   ].filter((t) => t.months > 0);
 
   const weightedRate = tiers.reduce((sum, t) => sum + t.amount * t.rate, 0) / total;
@@ -113,7 +118,10 @@ export function debtPayoff(
       totalInterest += interest;
       debt.remaining += interest;
 
-      const payment = Math.min(debt.remaining, debt.minimum + (sorted.find((d) => d.remaining > 0) === debt ? extra : 0));
+      const payment = Math.min(
+        debt.remaining,
+        debt.minimum + (sorted.find((d) => d.remaining > 0) === debt ? extra : 0),
+      );
       debt.remaining -= payment;
 
       if (sorted.find((d) => d.remaining > 0) === debt) {

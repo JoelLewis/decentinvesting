@@ -2,7 +2,9 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
 
-  let { slices }: {
+  let {
+    slices,
+  }: {
     slices: { label: string; value: number; color: string }[];
   } = $props();
 
@@ -17,7 +19,10 @@
       // Trigger re-render on theme change by reassigning slices reference
       render();
     });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
     return () => themeObserver.disconnect();
   });
 
@@ -35,12 +40,14 @@
 
     const g = svg.append('g').attr('transform', `translate(${radius},${radius})`);
 
-    const pie = d3.pie<{ label: string; value: number; color: string }>()
+    const pie = d3
+      .pie<{ label: string; value: number; color: string }>()
       .value((d) => d.value)
       .sort(null)
       .padAngle(0.02);
 
-    const arc = d3.arc<d3.PieArcDatum<{ label: string; value: number; color: string }>>()
+    const arc = d3
+      .arc<d3.PieArcDatum<{ label: string; value: number; color: string }>>()
       .innerRadius(innerRadius)
       .outerRadius(radius - 4)
       .cornerRadius(3);
@@ -55,7 +62,9 @@
 
     // Center label
     const total = slices.reduce((sum, s) => sum + s.value, 0);
-    const stockPct = slices.filter((s) => s.label.includes('Stock')).reduce((sum, s) => sum + s.value, 0);
+    const stockPct = slices
+      .filter((s) => s.label.includes('Stock'))
+      .reduce((sum, s) => sum + s.value, 0);
     g.append('text')
       .attr('text-anchor', 'middle')
       .attr('dy', '-0.2em')
@@ -78,6 +87,5 @@
 </script>
 
 <div bind:this={container}>
-  <svg width="192" height="192" role="img" aria-label="Portfolio allocation donut chart">
-  </svg>
+  <svg width="192" height="192" role="img" aria-label="Portfolio allocation donut chart"> </svg>
 </div>

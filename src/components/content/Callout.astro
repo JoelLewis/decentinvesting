@@ -38,7 +38,8 @@ const style = styles[type];
 
 <aside class={`border-l-4 ${style.border} ${style.bg} rounded-r-lg p-4 my-6`} role="note">
   <p class={`font-semibold ${style.titleColor} mb-2`}>
-    {style.icon} {title ?? style.defaultTitle}
+    {style.icon}
+    {title ?? style.defaultTitle}
   </p>
   <div class={`text-sm leading-relaxed ${style.textColor}`}>
     <slot />

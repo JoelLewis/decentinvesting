@@ -14,19 +14,23 @@
   ];
 </script>
 
-<div class="my-8 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-  <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Emergency Fund Tiers</h4>
+<div
+  class="my-8 rounded-xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-900"
+>
+  <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Emergency Fund Tiers</h4>
 
-  <div class="grid grid-cols-2 gap-4 mb-6 max-w-md">
+  <div class="mb-6 grid max-w-md grid-cols-2 gap-4">
     <CurrencyInput bind:value={monthlyExpenses} label="Monthly expenses" min={500} step={500} />
     <label class="block">
-      <span class="text-xs font-medium text-gray-600 dark:text-gray-400 block mb-1">Months of coverage</span>
+      <span class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400"
+        >Months of coverage</span
+      >
       <input
         type="range"
         bind:value={months}
         min="1"
         max="12"
-        class="w-full mt-2 accent-sage-600 dark:accent-sage-400"
+        class="mt-2 w-full accent-sage-600 dark:accent-sage-400"
       />
       <span class="text-xs text-gray-500 dark:text-gray-400">{months} months</span>
     </label>
@@ -35,28 +39,25 @@
   <!-- Tiered bar visualization -->
   <div class="mb-4" role="img" aria-label="Emergency fund tier allocation">
     <!-- Labels above the bar -->
-    <div class="flex gap-1 mb-1">
+    <div class="mb-1 flex gap-1">
       {#each result.tiers as tier, i}
         {@const widthPct = (tier.amount / result.total) * 100}
-        <div
-          class="text-center transition-all duration-300 min-w-0"
-          style="width: {widthPct}%"
-        >
-          <span class="block text-xs font-medium text-gray-700 dark:text-gray-300 truncate px-0.5">
+        <div class="min-w-0 text-center transition-all duration-300" style="width: {widthPct}%">
+          <span class="block truncate px-0.5 text-xs font-medium text-gray-700 dark:text-gray-300">
             {tier.name}
           </span>
-          <span class="block text-xs text-gray-500 dark:text-gray-400 truncate px-0.5">
+          <span class="block truncate px-0.5 text-xs text-gray-500 dark:text-gray-400">
             ${tier.amount.toLocaleString()}
           </span>
         </div>
       {/each}
     </div>
     <!-- Bar segments -->
-    <div class="flex gap-1 h-10 rounded-lg overflow-hidden">
+    <div class="flex h-10 gap-1 overflow-hidden rounded-lg">
       {#each result.tiers as tier, i}
         {@const widthPct = (tier.amount / result.total) * 100}
         <div
-          class="border {tierColors[i]} transition-all duration-300 rounded"
+          class="border {tierColors[i]} rounded transition-all duration-300"
           style="width: {widthPct}%"
           title="{tier.name}: ${tier.amount.toLocaleString()} ({tier.months} mo)"
         ></div>
@@ -65,7 +66,7 @@
   </div>
 
   <!-- Tier details table -->
-  <table class="w-full text-sm mb-4">
+  <table class="mb-4 w-full text-sm">
     <thead>
       <tr>
         <th class="text-left">Tier</th>
@@ -91,7 +92,9 @@
   <div class="grid grid-cols-3 gap-4 text-center">
     <div>
       <p class="text-xs text-gray-500 dark:text-gray-400">Total fund</p>
-      <p class="text-lg font-bold text-gray-700 dark:text-gray-200">${result.total.toLocaleString()}</p>
+      <p class="text-lg font-bold text-gray-700 dark:text-gray-200">
+        ${result.total.toLocaleString()}
+      </p>
     </div>
     <div>
       <p class="text-xs text-gray-500 dark:text-gray-400">Blended yield</p>
@@ -99,7 +102,9 @@
     </div>
     <div>
       <p class="text-xs text-gray-500 dark:text-gray-400">Annual interest</p>
-      <p class="text-lg font-bold text-sage-700 dark:text-sage-300">${result.annualInterest.toLocaleString()}</p>
+      <p class="text-lg font-bold text-sage-700 dark:text-sage-300">
+        ${result.annualInterest.toLocaleString()}
+      </p>
     </div>
   </div>
 </div>

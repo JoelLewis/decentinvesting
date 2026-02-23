@@ -28,9 +28,15 @@
     const themeObserver = new MutationObserver(() => {
       width = container.getBoundingClientRect().width;
     });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
 
-    return () => { observer.disconnect(); themeObserver.disconnect(); };
+    return () => {
+      observer.disconnect();
+      themeObserver.disconnect();
+    };
   });
 
   $effect(() => {
@@ -55,8 +61,10 @@
 
     // Zero line
     g.append('line')
-      .attr('x1', 0).attr('x2', innerW)
-      .attr('y1', y(0)).attr('y2', y(0))
+      .attr('x1', 0)
+      .attr('x2', innerW)
+      .attr('y1', y(0))
+      .attr('y2', y(0))
       .attr('stroke', axisColor)
       .attr('stroke-width', 1);
 
@@ -94,19 +102,43 @@
     // Axes
     g.append('g')
       .attr('transform', `translate(0,${innerH})`)
-      .call(d3.axisBottom(x).ticks(6).tickFormat((d) => String(d)))
-      .call((sel) => { sel.select('.domain').attr('stroke', axisColor); sel.selectAll('.tick text').attr('fill', tickColor); sel.selectAll('.tick line').attr('stroke', axisColor); });
+      .call(
+        d3
+          .axisBottom(x)
+          .ticks(6)
+          .tickFormat((d) => String(d)),
+      )
+      .call((sel) => {
+        sel.select('.domain').attr('stroke', axisColor);
+        sel.selectAll('.tick text').attr('fill', tickColor);
+        sel.selectAll('.tick line').attr('stroke', axisColor);
+      });
 
     g.append('g')
-      .call(d3.axisLeft(y).ticks(4).tickFormat((d) => `${d}%`))
-      .call((sel) => { sel.select('.domain').attr('stroke', axisColor); sel.selectAll('.tick text').attr('fill', tickColor); sel.selectAll('.tick line').attr('stroke', axisColor); });
+      .call(
+        d3
+          .axisLeft(y)
+          .ticks(4)
+          .tickFormat((d) => `${d}%`),
+      )
+      .call((sel) => {
+        sel.select('.domain').attr('stroke', axisColor);
+        sel.selectAll('.tick text').attr('fill', tickColor);
+        sel.selectAll('.tick line').attr('stroke', axisColor);
+      });
   });
 </script>
 
-<div bind:this={container} class="w-full my-6">
-  <svg {width} {height} class="overflow-visible" role="img" aria-label="Historical market drawdowns timeline showing major crashes and recovery periods">
+<div bind:this={container} class="my-6 w-full">
+  <svg
+    {width}
+    {height}
+    class="overflow-visible"
+    role="img"
+    aria-label="Historical market drawdowns timeline showing major crashes and recovery periods"
+  >
   </svg>
-  <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2">
+  <p class="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
     Every major crash was followed by full recovery and new highs. S&P 500 data.
   </p>
 </div>

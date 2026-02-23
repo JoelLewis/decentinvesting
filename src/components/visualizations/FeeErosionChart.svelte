@@ -2,7 +2,11 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
 
-  let { data, feeA, feeB }: {
+  let {
+    data,
+    feeA,
+    feeB,
+  }: {
     data: { year: number; valueA: number; valueB: number }[];
     feeA: number;
     feeB: number;
@@ -26,9 +30,15 @@
     const themeObserver = new MutationObserver(() => {
       width = container.getBoundingClientRect().width;
     });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
 
-    return () => { observer.disconnect(); themeObserver.disconnect(); };
+    return () => {
+      observer.disconnect();
+      themeObserver.disconnect();
+    };
   });
 
   $effect(() => {
@@ -48,33 +58,35 @@
 
     const maxVal = d3.max(data, (d) => Math.max(d.valueA, d.valueB)) ?? 0;
 
-    const x = d3.scaleLinear().domain([0, data[data.length - 1].year]).range([0, innerW]);
+    const x = d3
+      .scaleLinear()
+      .domain([0, data[data.length - 1].year])
+      .range([0, innerW]);
     const y = d3.scaleLinear().domain([0, maxVal]).nice().range([innerH, 0]);
 
     const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
 
-    const lineA = d3.line<{ year: number; valueA: number }>()
+    const lineA = d3
+      .line<{ year: number; valueA: number }>()
       .x((d) => x(d.year))
       .y((d) => y(d.valueA))
       .curve(d3.curveMonotoneX);
 
-    const lineB = d3.line<{ year: number; valueB: number }>()
+    const lineB = d3
+      .line<{ year: number; valueB: number }>()
       .x((d) => x(d.year))
       .y((d) => y(d.valueB))
       .curve(d3.curveMonotoneX);
 
     // Fill between lines
-    const area = d3.area<{ year: number; valueA: number; valueB: number }>()
+    const area = d3
+      .area<{ year: number; valueA: number; valueB: number }>()
       .x((d) => x(d.year))
       .y0((d) => y(d.valueB))
       .y1((d) => y(d.valueA))
       .curve(d3.curveMonotoneX);
 
-    g.append('path')
-      .datum(data)
-      .attr('d', area)
-      .attr('fill', redColor)
-      .attr('opacity', 0.1);
+    g.append('path').datum(data).attr('d', area).attr('fill', redColor).attr('opacity', 0.1);
 
     // Low fee line
     g.append('path')
@@ -114,16 +126,40 @@
     // Axes
     g.append('g')
       .attr('transform', `translate(0,${innerH})`)
-      .call(d3.axisBottom(x).ticks(Math.min(data.length - 1, 10)).tickFormat((d) => `${d}y`))
-      .call((sel) => { sel.select('.domain').attr('stroke', axisColor); sel.selectAll('.tick text').attr('fill', tickColor); sel.selectAll('.tick line').attr('stroke', axisColor); });
+      .call(
+        d3
+          .axisBottom(x)
+          .ticks(Math.min(data.length - 1, 10))
+          .tickFormat((d) => `${d}y`),
+      )
+      .call((sel) => {
+        sel.select('.domain').attr('stroke', axisColor);
+        sel.selectAll('.tick text').attr('fill', tickColor);
+        sel.selectAll('.tick line').attr('stroke', axisColor);
+      });
 
     g.append('g')
-      .call(d3.axisLeft(y).ticks(5).tickFormat((d) => `$${d3.format('.2s')(d as number)}`))
-      .call((sel) => { sel.select('.domain').attr('stroke', axisColor); sel.selectAll('.tick text').attr('fill', tickColor); sel.selectAll('.tick line').attr('stroke', axisColor); });
+      .call(
+        d3
+          .axisLeft(y)
+          .ticks(5)
+          .tickFormat((d) => `$${d3.format('.2s')(d as number)}`),
+      )
+      .call((sel) => {
+        sel.select('.domain').attr('stroke', axisColor);
+        sel.selectAll('.tick text').attr('fill', tickColor);
+        sel.selectAll('.tick line').attr('stroke', axisColor);
+      });
   });
 </script>
 
 <div bind:this={container} class="w-full">
-  <svg {width} {height} class="overflow-visible" role="img" aria-label="Fee impact comparison chart showing diverging growth lines">
+  <svg
+    {width}
+    {height}
+    class="overflow-visible"
+    role="img"
+    aria-label="Fee impact comparison chart showing diverging growth lines"
+  >
   </svg>
 </div>

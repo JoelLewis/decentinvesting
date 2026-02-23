@@ -5,7 +5,7 @@
 </script>
 
 <div
-  class="h-1 bg-gray-100 dark:bg-gray-800 sticky top-14 z-30"
+  class="sticky top-14 z-30 h-1 bg-gray-100 dark:bg-gray-800"
   role="progressbar"
   aria-valuenow={currentIndex + 1}
   aria-valuemin={1}
@@ -13,7 +13,7 @@
   aria-label="Guide progress: step {currentIndex + 1} of {totalPages}"
 >
   <div
-    class="h-full bg-sage-500 dark:bg-sage-400 transition-all duration-500 ease-out"
+    class="h-full bg-sage-500 transition-all duration-500 ease-out dark:bg-sage-400"
     style="width: {progress}%"
   ></div>
 </div>

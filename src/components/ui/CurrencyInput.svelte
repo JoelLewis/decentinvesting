@@ -38,7 +38,7 @@
 </script>
 
 <label class="block">
-  <span class="text-xs font-medium text-gray-600 dark:text-gray-400 block mb-1">{label}</span>
+  <span class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">{label}</span>
   <input
     type="text"
     inputmode="decimal"
@@ -47,8 +47,8 @@
     onfocus={startEdit}
     onblur={endEdit}
     {step}
-    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm
-           bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-           focus:ring-2 focus:ring-sage-400 focus:border-sage-400"
+    class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm
+           text-gray-900 focus:border-sage-400 focus:ring-2 focus:ring-sage-400
+           dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
   />
 </label>

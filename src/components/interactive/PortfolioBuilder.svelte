@@ -8,8 +8,7 @@
   const allocation = $derived(suggestAllocation(age, riskTolerance));
 
   const riskLabel = $derived(
-    riskTolerance < 30 ? 'Conservative' :
-    riskTolerance < 70 ? 'Moderate' : 'Aggressive'
+    riskTolerance < 30 ? 'Conservative' : riskTolerance < 70 ? 'Moderate' : 'Aggressive',
   );
 
   const slices = $derived([
@@ -19,12 +18,14 @@
   ]);
 </script>
 
-<div class="my-8 p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-  <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">Portfolio Builder</h4>
+<div
+  class="my-8 rounded-xl border border-gray-200 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-900"
+>
+  <h4 class="mb-4 text-lg font-semibold text-gray-900 dark:text-gray-100">Portfolio Builder</h4>
 
-  <div class="grid grid-cols-2 gap-6 mb-6 max-w-md">
+  <div class="mb-6 grid max-w-md grid-cols-2 gap-6">
     <label class="block">
-      <span class="text-xs font-medium text-gray-600 dark:text-gray-400 block mb-1">Your age</span>
+      <span class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400">Your age</span>
       <input
         type="range"
         bind:value={age}
@@ -32,10 +33,12 @@
         max="80"
         class="w-full accent-sage-600 dark:accent-sage-400"
       />
-      <span class="text-sm text-gray-700 dark:text-gray-300 font-medium">{age} years old</span>
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{age} years old</span>
     </label>
     <label class="block">
-      <span class="text-xs font-medium text-gray-600 dark:text-gray-400 block mb-1">Risk tolerance</span>
+      <span class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400"
+        >Risk tolerance</span
+      >
       <input
         type="range"
         bind:value={riskTolerance}
@@ -43,27 +46,29 @@
         max="100"
         class="w-full accent-sage-600 dark:accent-sage-400"
       />
-      <span class="text-sm text-gray-700 dark:text-gray-300 font-medium">{riskLabel}</span>
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{riskLabel}</span>
     </label>
   </div>
 
-  <div class="flex flex-col sm:flex-row items-center gap-6">
-    <div class="w-48 h-48">
+  <div class="flex flex-col items-center gap-6 sm:flex-row">
+    <div class="h-48 w-48">
       <AllocationPie {slices} />
     </div>
 
     <div class="flex-1 space-y-2">
       {#each slices as slice}
         <div class="flex items-center gap-3">
-          <span class="w-3 h-3 rounded-full shrink-0" style="background-color: {slice.color}"></span>
-          <span class="text-sm text-gray-700 dark:text-gray-300 flex-1">{slice.label}</span>
+          <span class="h-3 w-3 shrink-0 rounded-full" style="background-color: {slice.color}"
+          ></span>
+          <span class="flex-1 text-sm text-gray-700 dark:text-gray-300">{slice.label}</span>
           <span class="text-sm font-bold text-gray-900 dark:text-gray-100">{slice.value}%</span>
         </div>
       {/each}
     </div>
   </div>
 
-  <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">
-    Based on the "110 minus age" rule, adjusted for risk tolerance. Fund tickers are examples — comparable funds exist at Fidelity, Schwab, and other brokerages.
+  <p class="mt-4 text-xs text-gray-500 dark:text-gray-400">
+    Based on the "110 minus age" rule, adjusted for risk tolerance. Fund tickers are examples —
+    comparable funds exist at Fidelity, Schwab, and other brokerages.
   </p>
 </div>
